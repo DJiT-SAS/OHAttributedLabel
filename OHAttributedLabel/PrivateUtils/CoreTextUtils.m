@@ -32,9 +32,9 @@
 /////////////////////////////////////////////////////////////////////////////////////
 
 
-CTTextAlignment CTTextAlignmentFromUITextAlignment(UITextAlignment alignment)
+CTTextAlignment CTTextAlignmentFromNSTextAlignment(NSTextAlignment alignment)
 {
-    if (alignment == (UITextAlignment)kCTJustifiedTextAlignment)
+    if (alignment == (NSTextAlignment)kCTJustifiedTextAlignment)
     {
         /* special OOB value, so test it outside of the switch to avoid warning */
         return kCTJustifiedTextAlignment;
@@ -42,9 +42,9 @@ CTTextAlignment CTTextAlignmentFromUITextAlignment(UITextAlignment alignment)
 	switch (alignment)
     {
 #if __IPHONE_OS_VERSION_MAX_ALLOWED < 60000
-		case UITextAlignmentLeft: return kCTLeftTextAlignment;
-		case UITextAlignmentCenter: return kCTCenterTextAlignment;
-		case UITextAlignmentRight: return kCTRightTextAlignment;
+		case NSTextAlignmentLeft: return kCTLeftTextAlignment;
+		case NSTextAlignmentCenter: return kCTCenterTextAlignment;
+		case NSTextAlignmentRight: return kCTRightTextAlignment;
 #else
 		case NSTextAlignmentLeft: return kCTLeftTextAlignment;
 		case NSTextAlignmentCenter: return kCTCenterTextAlignment;

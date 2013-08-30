@@ -33,7 +33,7 @@
 #pragma mark - Text Alignment Convertion
 /////////////////////////////////////////////////////////////////////////////////////
 
-CTTextAlignment CTTextAlignmentFromUITextAlignment(UITextAlignment alignment);
+CTTextAlignment CTTextAlignmentFromNSTextAlignment(NSTextAlignment alignment);
 CTLineBreakMode CTLineBreakModeFromUILineBreakMode(UILineBreakMode lineBreakMode);
 
 /////////////////////////////////////////////////////////////////////////////////////

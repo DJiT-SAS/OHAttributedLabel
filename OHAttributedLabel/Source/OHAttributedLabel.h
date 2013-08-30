@@ -48,7 +48,7 @@
 #pragma mark - Constants
 /////////////////////////////////////////////////////////////////////////////////////
 
-extern const int UITextAlignmentJustify
+extern const int NSTextAlignmentJustify
 #if __IPHONE_OS_VERSION_MAX_ALLOWED < 60000
 __attribute__((deprecated("You should use 'setTextAlignment:lineBreakMode:' on your NSAttributedString instead.")));
 #else

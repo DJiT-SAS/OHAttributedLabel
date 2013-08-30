@@ -54,7 +54,7 @@
 /////////////////////////////////////////////////////////////////////////////////////
 
 
-const int UITextAlignmentJustify = ((UITextAlignment)kCTJustifiedTextAlignment);
+const int NSTextAlignmentJustify = ((NSTextAlignment)kCTJustifiedTextAlignment);
 
 @interface OHAttributedLabel(/* Private */)
 {
@@ -692,7 +692,7 @@ NSDataDetector* sharedReusableDataDetector(NSTextCheckingTypes types)
     {
         [mutAttrStr setTextColor:self.textColor];
     }
-	CTTextAlignment coreTextAlign = CTTextAlignmentFromUITextAlignment(self.textAlignment);
+	CTTextAlignment coreTextAlign = CTTextAlignmentFromNSTextAlignment(self.textAlignment);
 	CTLineBreakMode coreTextLBMode = CTLineBreakModeFromUILineBreakMode(self.lineBreakMode);
 	[mutAttrStr setTextAlignment:coreTextAlign lineBreakMode:coreTextLBMode];
     
@@ -755,11 +755,11 @@ NSDataDetector* sharedReusableDataDetector(NSTextCheckingTypes types)
 	[super setTextColor:color]; // will call setNeedsDisplay too
 }
 
--(void)setTextAlignment:(UITextAlignment)alignment
+-(void)setTextAlignment:(NSTextAlignment)alignment
 {
     if (_attributedText)
     {
-        CTTextAlignment coreTextAlign = CTTextAlignmentFromUITextAlignment(alignment);
+        CTTextAlignment coreTextAlign = CTTextAlignmentFromNSTextAlignment(alignment);
         CTLineBreakMode coreTextLBMode = CTLineBreakModeFromUILineBreakMode(self.lineBreakMode);
         NSMutableAttributedString* mutAS = [NSMutableAttributedString attributedStringWithAttributedString:_attributedText];
         [mutAS setTextAlignment:coreTextAlign lineBreakMode:coreTextLBMode];
@@ -773,7 +773,7 @@ NSDataDetector* sharedReusableDataDetector(NSTextCheckingTypes types)
 {
     if (_attributedText)
     {
-        CTTextAlignment coreTextAlign = CTTextAlignmentFromUITextAlignment(self.textAlignment);
+        CTTextAlignment coreTextAlign = CTTextAlignmentFromNSTextAlignment(self.textAlignment);
         CTLineBreakMode coreTextLBMode = CTLineBreakModeFromUILineBreakMode(lineBreakMode);
         NSMutableAttributedString* mutAS = [NSMutableAttributedString attributedStringWithAttributedString:_attributedText];
         [mutAS setTextAlignment:coreTextAlign lineBreakMode:coreTextLBMode];
