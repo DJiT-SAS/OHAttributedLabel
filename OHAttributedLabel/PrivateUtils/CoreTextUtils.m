@@ -54,17 +54,17 @@ CTTextAlignment CTTextAlignmentFromNSTextAlignment(NSTextAlignment alignment)
 	}
 }
 
-CTLineBreakMode CTLineBreakModeFromUILineBreakMode(UILineBreakMode lineBreakMode)
+CTLineBreakMode CTLineBreakModeFromNSLineBreakMode(NSLineBreakMode lineBreakMode)
 {
 	switch (lineBreakMode)
     {
 #if __IPHONE_OS_VERSION_MAX_ALLOWED < 60000
-		case UILineBreakModeWordWrap: return kCTLineBreakByWordWrapping;
-		case UILineBreakModeCharacterWrap: return kCTLineBreakByCharWrapping;
-		case UILineBreakModeClip: return kCTLineBreakByClipping;
-		case UILineBreakModeHeadTruncation: return kCTLineBreakByTruncatingHead;
-		case UILineBreakModeTailTruncation: return kCTLineBreakByTruncatingTail;
-		case UILineBreakModeMiddleTruncation: return kCTLineBreakByTruncatingMiddle;
+		case NSLineBreakByWordWrapping: return kCTLineBreakByWordWrapping;
+		case NSLineBreakModeCharacterWrap: return kCTLineBreakByCharWrapping;
+		case NSLineBreakModeClip: return kCTLineBreakByClipping;
+		case NSLineBreakModeHeadTruncation: return kCTLineBreakByTruncatingHead;
+		case NSLineBreakModeTailTruncation: return kCTLineBreakByTruncatingTail;
+		case NSLineBreakModeMiddleTruncation: return kCTLineBreakByTruncatingMiddle;
 #else
 		case NSLineBreakByWordWrapping: return kCTLineBreakByWordWrapping;
 		case NSLineBreakByCharWrapping: return kCTLineBreakByCharWrapping;

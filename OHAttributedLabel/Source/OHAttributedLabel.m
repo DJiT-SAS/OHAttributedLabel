@@ -693,7 +693,7 @@ NSDataDetector* sharedReusableDataDetector(NSTextCheckingTypes types)
         [mutAttrStr setTextColor:self.textColor];
     }
 	CTTextAlignment coreTextAlign = CTTextAlignmentFromNSTextAlignment(self.textAlignment);
-	CTLineBreakMode coreTextLBMode = CTLineBreakModeFromUILineBreakMode(self.lineBreakMode);
+	CTLineBreakMode coreTextLBMode = CTLineBreakModeFromNSLineBreakMode(self.lineBreakMode);
 	[mutAttrStr setTextAlignment:coreTextAlign lineBreakMode:coreTextLBMode];
     
 	self.attributedText = [NSAttributedString attributedStringWithAttributedString:mutAttrStr];
@@ -760,7 +760,7 @@ NSDataDetector* sharedReusableDataDetector(NSTextCheckingTypes types)
     if (_attributedText)
     {
         CTTextAlignment coreTextAlign = CTTextAlignmentFromNSTextAlignment(alignment);
-        CTLineBreakMode coreTextLBMode = CTLineBreakModeFromUILineBreakMode(self.lineBreakMode);
+        CTLineBreakMode coreTextLBMode = CTLineBreakModeFromNSLineBreakMode(self.lineBreakMode);
         NSMutableAttributedString* mutAS = [NSMutableAttributedString attributedStringWithAttributedString:_attributedText];
         [mutAS setTextAlignment:coreTextAlign lineBreakMode:coreTextLBMode];
         MRC_RELEASE(_attributedText);
@@ -769,12 +769,12 @@ NSDataDetector* sharedReusableDataDetector(NSTextCheckingTypes types)
 	[super setTextAlignment:alignment]; // will call setNeedsDisplay too
 }
 
--(void)setLineBreakMode:(UILineBreakMode)lineBreakMode
+-(void)setLineBreakMode:(NSLineBreakMode)lineBreakMode
 {
     if (_attributedText)
     {
         CTTextAlignment coreTextAlign = CTTextAlignmentFromNSTextAlignment(self.textAlignment);
-        CTLineBreakMode coreTextLBMode = CTLineBreakModeFromUILineBreakMode(lineBreakMode);
+        CTLineBreakMode coreTextLBMode = CTLineBreakModeFromNSLineBreakMode(lineBreakMode);
         NSMutableAttributedString* mutAS = [NSMutableAttributedString attributedStringWithAttributedString:_attributedText];
         [mutAS setTextAlignment:coreTextAlign lineBreakMode:coreTextLBMode];
         MRC_RELEASE(_attributedText);
@@ -849,9 +849,9 @@ NSDataDetector* sharedReusableDataDetector(NSTextCheckingTypes types)
 -(void)warnAboutKnownIssues_CheckLineBreakMode_FromXIB:(BOOL)fromXIB
 {
 #if __IPHONE_OS_VERSION_MAX_ALLOWED < 60000
-	BOOL truncationMode = (self.lineBreakMode == UILineBreakModeHeadTruncation)
-	|| (self.lineBreakMode == UILineBreakModeMiddleTruncation)
-	|| (self.lineBreakMode == UILineBreakModeTailTruncation);
+	BOOL truncationMode = (self.lineBreakMode == NSLineBreakModeHeadTruncation)
+	|| (self.lineBreakMode == NSLineBreakModeMiddleTruncation)
+	|| (self.lineBreakMode == NSLineBreakModeTailTruncation);
 #else
 	BOOL truncationMode = (self.lineBreakMode == NSLineBreakByTruncatingHead)
 	|| (self.lineBreakMode == NSLineBreakByTruncatingMiddle)
@@ -859,7 +859,7 @@ NSDataDetector* sharedReusableDataDetector(NSTextCheckingTypes types)
 #endif
 	if (truncationMode)
     {
-		NSLog(@"[OHAttributedLabel] Warning: \"UILineBreakMode...Truncation\" lineBreakModes are not yet fully supported"
+		NSLog(@"[OHAttributedLabel] Warning: \"NSLineBreakMode...Truncation\" lineBreakModes are not yet fully supported"
               "by CoreText and OHAttributedLabel. See https://github.com/AliSoftware/OHAttributedLabel/issues/3");
         if (fromXIB)
         {

@@ -34,7 +34,7 @@
 /////////////////////////////////////////////////////////////////////////////////////
 
 CTTextAlignment CTTextAlignmentFromNSTextAlignment(NSTextAlignment alignment);
-CTLineBreakMode CTLineBreakModeFromUILineBreakMode(UILineBreakMode lineBreakMode);
+CTLineBreakMode CTLineBreakModeFromNSLineBreakMode(NSLineBreakMode lineBreakMode);
 
 /////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Flipping Coordinates
