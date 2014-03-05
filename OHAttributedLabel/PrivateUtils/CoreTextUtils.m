@@ -52,6 +52,10 @@ CTTextAlignment CTTextAlignmentFromNSTextAlignment(NSTextAlignment alignment)
 #endif
 		default: return kCTNaturalTextAlignment;
 	}
+#else
+    // Use equivalent Apple provided function
+    return NSTextAlignmentToCTTextAlignment(alignment);
+#endif
 }
 
 CTLineBreakMode CTLineBreakModeFromNSLineBreakMode(NSLineBreakMode lineBreakMode)
@@ -137,6 +141,16 @@ CGRect CTRunGetTypographicBoundsAsRect(CTRunRef run, CTLineRef line, CGPoint lin
 					  lineOrigin.y - descent,
 					  width,
 					  height);
+}
+
+CGRect CTRunGetTypographicBoundsForRangeAsRect(CTRunRef run, CTLineRef line, CGPoint lineOrigin, CFRange range, CGContextRef ctx)
+{
+    CGRect boundsOfRun = CTRunGetTypographicBoundsAsRect(run, line, lineOrigin);
+    CGRect boundsOfImageForRun = CTRunGetImageBounds(run, ctx, range);
+    return CGRectMake(boundsOfRun.origin.x + boundsOfImageForRun.origin.x,
+                      boundsOfRun.origin.y,
+                      boundsOfImageForRun.size.width,
+                      boundsOfRun.size.height);
 }
 
 BOOL CTLineContainsCharactersFromStringRange(CTLineRef line, NSRange range)
